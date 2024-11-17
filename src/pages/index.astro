@@ -28,6 +28,11 @@ const title = 'Astro first project'
 
 			footer.innerText = `Current year: ${currentYear}`;
 			currentTime.innerText = `Current time dinamically: ${new Date().toLocaleTimeString()}`;
+
+			// Set dinamically the current time
+			setInterval(() => {
+				currentTime.innerText = `Current time dinamically: ${new Date().toLocaleTimeString()}`;
+			}, 1000);
 		</script>
 
 	</body>
