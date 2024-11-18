@@ -11,18 +11,10 @@ const name = 'Felipe Roman Navas Lederhos'
   <p>Current time static: {new Date(Date.now()).toLocaleString()}</p>
   <p id="current-time-dynamically">Current time dynamically: No time yet</p>
 
-  <footer>Current year: 2023</footer>
-
   <script>
-    const footer = document.querySelector('footer') as HTMLElement
     const currentTime = document.querySelector(
       '#current-time-dynamically'
     ) as HTMLParagraphElement
-
-    const currentYear: number = new Date(Date.now()).getFullYear()
-
-    footer.innerText = `Current year: ${currentYear}`
-    currentTime.innerText = `Current time dynamically: ${new Date().toLocaleTimeString()}`
 
     // Set dynamically the current time
     setInterval(() => {
