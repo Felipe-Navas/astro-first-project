@@ -1,44 +1,32 @@
 ---
-import Navbar from '../components/Navbar.astro'
+import MainLayout from '../layouts/MainLayout.astro'
 
 // It is only executed on the server side
 const name = 'Felipe Roman Navas Lederhos'
-const title = 'Astro first project'
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-  </head>
-  <body>
-    <Navbar />
+<MainLayout title="Home">
+  <h1>Hello {name}</h1>
 
-    <h1>Hello {name}</h1>
+  <p>Current time static: {new Date(Date.now()).toLocaleString()}</p>
+  <p id="current-time-dynamically">Current time dynamically: No time yet</p>
 
-    <p>Current time static: {new Date(Date.now()).toLocaleString()}</p>
-    <p id="current-time-dynamically">Current time dynamically: No time yet</p>
+  <footer>Current year: 2023</footer>
 
-    <footer>Current year: 2023</footer>
+  <script>
+    const footer = document.querySelector('footer') as HTMLElement
+    const currentTime = document.querySelector(
+      '#current-time-dynamically'
+    ) as HTMLParagraphElement
 
-    <script>
-      const footer = document.querySelector('footer') as HTMLElement
-      const currentTime = document.querySelector(
-        '#current-time-dynamically'
-      ) as HTMLParagraphElement
+    const currentYear: number = new Date(Date.now()).getFullYear()
 
-      const currentYear: number = new Date(Date.now()).getFullYear()
+    footer.innerText = `Current year: ${currentYear}`
+    currentTime.innerText = `Current time dynamically: ${new Date().toLocaleTimeString()}`
 
-      footer.innerText = `Current year: ${currentYear}`
+    // Set dynamically the current time
+    setInterval(() => {
       currentTime.innerText = `Current time dynamically: ${new Date().toLocaleTimeString()}`
-
-      // Set dynamically the current time
-      setInterval(() => {
-        currentTime.innerText = `Current time dynamically: ${new Date().toLocaleTimeString()}`
-      }, 1000)
-    </script>
-  </body>
-</html>
+    }, 1000)
+  </script>
+</MainLayout>
